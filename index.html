@@ -745,10 +745,8 @@
       <div class="preset-row">
         <button class="preset-btn active" data-years="all" onclick="selectPreset(this)">指定なし</button>
         <button class="preset-btn" data-years="-1" onclick="selectPreset(this)">今年</button>
-        <button class="preset-btn" data-years="1" onclick="selectPreset(this)">1年以内</button>
-        <button class="preset-btn" data-years="2" onclick="selectPreset(this)">2年以内</button>
-        <button class="preset-btn" data-years="3" onclick="selectPreset(this)">3年以内</button>
-        <button class="preset-btn" data-years="5" onclick="selectPreset(this)">5年以内</button>
+        <button class="preset-btn" data-years="-2" onclick="selectPreset(this)">去年</button>
+        <button class="preset-btn" data-years="-3" onclick="selectPreset(this)">一昨年</button>
         <button class="preset-btn" data-years="0" onclick="selectPreset(this)">
           <i class="ti ti-pencil"></i> カスタム
         </button>
@@ -1096,8 +1094,26 @@
       tag.textContent = '今年';
       tag.classList.remove('custom');
       isAllPeriod = false;
+      dateFrom = new Date(today.getFullYear(), 0, 1);
       dateTo   = new Date(today);
-      dateFrom = new Date(today.getFullYear(), 0, 1); // 1月1日
+      updateDisplay();
+    } else if (years === -2) {
+      // 去年：去年の1月1日〜12月31日
+      customRow.classList.remove('show');
+      tag.textContent = '去年';
+      tag.classList.remove('custom');
+      isAllPeriod = false;
+      dateFrom = new Date(today.getFullYear() - 1, 0, 1);
+      dateTo   = new Date(today.getFullYear() - 1, 11, 31);
+      updateDisplay();
+    } else if (years === -3) {
+      // 一昨年：一昨年の1月1日〜12月31日
+      customRow.classList.remove('show');
+      tag.textContent = '一昨年';
+      tag.classList.remove('custom');
+      isAllPeriod = false;
+      dateFrom = new Date(today.getFullYear() - 2, 0, 1);
+      dateTo   = new Date(today.getFullYear() - 2, 11, 31);
       updateDisplay();
     } else if (years === 0) {
       customRow.classList.add('show');
