@@ -1198,7 +1198,7 @@
   function buildParts() {
     var mustRaw = document.getElementById('mustKw').value.trim();
     var mustPart = mustRaw
-      ? mustRaw.split(/[\s　]+/).filter(Boolean).map(function(w){ return '"' + w + '"'; }).join(' ')
+      ? mustRaw.split(/　+/).filter(Boolean).map(function(w){ return '"' + w + '"'; }).join(' ')
       : '';
 
     var excludeRaw = document.getElementById('excludeKw').value.trim();
