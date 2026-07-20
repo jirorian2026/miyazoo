@@ -1215,7 +1215,7 @@
     // AND検索：word1 word2 word3（スペース区切り＝Googleデフォルトのand）
     var andRaw = document.getElementById('andKw').value.trim();
     var andPart = andRaw
-      ? andRaw.split(/[\s　]+/).filter(Boolean).join(' ')
+      ? '(' + andRaw.split(/[\s　]+/).filter(Boolean).join(' AND ') + ')'
       : '';
 
     return { mustPart: mustPart, excludePart: excludePart, orPart: orPart, andPart: andPart };
